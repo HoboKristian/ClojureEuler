@@ -1,15 +1,13 @@
 (defn divides[n d] (= (mod n d) 0))
 
 (defn is-prime
-  ([n] (is-prime n 2))
+  ([n] (is-prime n (range 2 (inc (Math/ceil (Math/sqrt n))))))
   ([n d]
-   (if (== d (inc (Math/ceil (Math/sqrt n))))
-     true
-     (if (divides n d)
-       false
-       (recur n (inc d))))))
+   (or (empty? d)
+     (and (not (divides n (first d)))
+       (recur n (rest d))))))
 
-(defn next-prime[n] ())
+(defn primes-to[n]
+  (cons 2 (filter is-prime (range 2 n))))
 
-(println (nth (cons 1 (cons 2 (filter is-prime (range 2 1000000)))) 10001))
-
+(println (nth (primes-to 1000000) 10000))
