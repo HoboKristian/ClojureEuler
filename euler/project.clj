@@ -6,4 +6,5 @@
   :dependencies [[org.clojure/clojure "1.10.0"]]
   :main ^:skip-aot euler.core
   :target-path "target/%s"
+  :plugins [[lein-exec "0.3.7"]]
   :profiles {:uberjar {:aot :all}})
